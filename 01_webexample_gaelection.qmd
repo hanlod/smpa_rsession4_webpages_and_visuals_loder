@@ -6,6 +6,7 @@ format:
     self-contained: true
     toc: true
     toc-location: left
+    code-fold: true
 ---
 
 ```{r setup, include=FALSE}
@@ -45,6 +46,7 @@ votedemos_2020_gen <- votedemos_2020_gen %>%
 votedemos_2020_gen
 
 ```
+
 Let's use select() to simplify our table
 
 ```{r}
@@ -66,8 +68,6 @@ votedemos_2020_gen <- votedemos_2020_gen %>%
 votedemos_2020_gen
 
 ```
-
-
 
 ## Charts
 
@@ -92,7 +92,6 @@ votedemos_2020_gen %>%
 
 Fix the axis labels?
 
-
 ```{r}
 votedemos_2020_gen %>% 
   head(15) %>% 
@@ -110,11 +109,85 @@ votedemos_2020_gen %>%
 
 ```{r}
 
-
+votedemos_2020_gen %>% 
+  head(15) %>% 
+  ggplot(aes(x = reorder(county, white_female_pct), y = white_female_pct)) + 
+  geom_col(color = "white", fill = "purple") +
+  coord_flip() + 
+  scale_y_continuous(name = "Pct of White Female Registered Voters Who Voted") +
+  scale_x_discrete(name = "County") +
+  theme_hc() +
+  labs(title = "Voter Turnout in GA", 
+       subtitle = "2020 General Election",
+       caption = "Source: GA Sec State") +
+  theme(axis.text.y = element_text(angle = 45))
 
 
 ```
 
+```{r}
+
+votedemos_2020_gen %>% 
+  head(15) %>% 
+  ggplot(aes(x = reorder(county, white_male_pct), y = white_male_pct)) + 
+  geom_col(color = "white", fill = "orange") +
+  coord_flip() + 
+  scale_y_continuous(name = "Pct of White Male Registered Voters Who Voted") +
+  scale_x_discrete(name = "County") +
+  theme_hc() +
+  labs(title = "Voter Turnout in GA", 
+       subtitle = "2020 General Election",
+       caption = "Source: GA Sec State") +
+  theme(axis.text.y = element_text(angle = 45))
+
+
+```
+
+```{r}
+
+votedemos_2020_gen %>% 
+  head(15) %>% 
+  ggplot(aes(x = reorder(county, black_female_pct), y = black_female_pct)) + 
+  geom_col(color = "white", fill = "lightblue") +
+  coord_flip() + 
+  scale_y_continuous(name = "Pct of Black Female Registered Voters Who Voted") +
+  scale_x_discrete(name = "County") +
+  theme_hc() +
+  labs(title = "Voter Turnout in GA", 
+       subtitle = "2020 General Election",
+       caption = "Source: GA Sec State") +
+  theme(axis.text.y = element_text(angle = 45))
+
+
+```
+
+```{r}
+
+votedemos_2020_gen %>% 
+  head(15) %>% 
+  ggplot(aes(x = reorder(county, black_male_pct), y = black_male_pct)) + 
+  geom_col(color = "white", fill = "lightgreen") +
+  coord_flip() + 
+  scale_y_continuous(name = "Pct of Black Male Registered Voters Who Voted") +
+  scale_x_discrete(name = "County") +
+  theme_hc() +
+  labs(title = "Voter Turnout in GA", 
+       subtitle = "2020 General Election",
+       caption = "Source: GA Sec State") +
+  theme(axis.text.y = element_text(angle = 45))
+
+
+```
+
+```{r}
+
+
+votedemos_2020_gen %>% 
+  head(5) %>% 
+  DT::datatable(rownames = FALSE, 
+                options = list(searching = FALSE, paging = FALSE, dom = "tip")) 
+
+```
 
 ```{r}
 
@@ -123,7 +196,6 @@ votedemos_2020_gen %>%
 
 ```
 
-
 ```{r}
 
 
@@ -131,43 +203,9 @@ votedemos_2020_gen %>%
 
 ```
 
-
 ```{r}
 
 
 
 
 ```
-
-
-```{r}
-
-
-
-
-```
-
-
-```{r}
-
-
-
-
-```
-
-
-```{r}
-
-
-
-
-```
-
-
-```{r}
-
-
-
-
-```
-
